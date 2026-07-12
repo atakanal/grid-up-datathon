@@ -1,0 +1,17 @@
+.venv/
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints/
+.DS_Store
+*.pyc
+*.pkl
+*.joblib
+*.log
+data/raw/*
+data/processed/*
+models/*
+submissions/*.csv
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!models/.gitkeep
+!submissions/.gitkeep

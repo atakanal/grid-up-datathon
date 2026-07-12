@@ -1,0 +1,14 @@
+numpy>=1.26,<3
+pandas>=2.2,<3
+scikit-learn>=1.5,<2
+lightgbm>=4.5,<5
+catboost>=1.2,<2
+xgboost>=2.1,<4
+optuna>=4,<5
+shap>=0.46,<1
+matplotlib>=3.9,<4
+pyyaml>=6,<7
+joblib>=1.4,<2
+jupyterlab>=4,<5
+nbformat>=5.10,<6
+pytest>=8,<9
