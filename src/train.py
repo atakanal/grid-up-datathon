@@ -81,7 +81,7 @@ def main() -> None:
     X, X_test = prepare_tabular_features(train, test, args.target, args.id_column)
 
     metric_fn, higher_is_better = get_metric(args.metric, args.task)
-    oof = np.zeros(len(train), dtype=float)
+    oof = np.full(len(train), np.nan, dtype=float)
     test_predictions = np.zeros(len(test), dtype=float)
     fold_scores: list[float] = []
     models = []
@@ -105,7 +105,10 @@ def main() -> None:
         models.append(model)
         print(f"Fold {fold}: {score:.6f}")
 
-    cv_score = float(metric_fn(y, oof))
+    valid_oof_mask = np.isfinite(oof)
+    if not valid_oof_mask.any():
+        raise RuntimeError("Hiçbir OOF tahmini üretilemedi.")
+    cv_score = float(metric_fn(y[valid_oof_mask], oof[valid_oof_mask]))
     print(f"OOF score: {cv_score:.6f} ({'yüksek iyi' if higher_is_better else 'düşük iyi'})")
 
     output_dir = Path(args.output_dir)

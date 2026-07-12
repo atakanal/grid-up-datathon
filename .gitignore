@@ -11,6 +11,8 @@ data/raw/*
 data/processed/*
 models/*
 submissions/*.csv
+experiments/*.png
+experiments/rehearsal_*.csv
 !data/raw/.gitkeep
 !data/processed/.gitkeep
 !models/.gitkeep
