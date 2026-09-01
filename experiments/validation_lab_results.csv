@@ -1,9 +1,0 @@
-scenario,method,rmse,interpretation
-Future forecasting,Random KFold CV,6.089530754984077,Future rows are mixed into training folds; usually optimistic.
-Future forecasting,TimeSeriesSplit CV,8.119813845536818,Training always precedes validation; closer to deployment.
-Future forecasting,Actual future holdout,19.3263065294936,The final 28 days; our deployment-like reference.
-Unseen assets,Random KFold CV,5.507219039666976,The same meters appear in train and validation; identity is memorized.
-Unseen assets,GroupKFold CV,17.19520742768995,Each validation fold contains meters absent from that fold's training data.
-Unseen assets,Actual unseen-meter holdout,11.607596997644384,Nine completely unseen meters; our deployment-like reference.
-Feature leakage,Safe shifted 3-step rolling CV,5.265288832239654,Uses only past labels; feature-target correlation=0.949.
-Feature leakage,Leaky current-inclusive 3-step rolling CV,3.594657670268674,Current target contaminates the feature; correlation=0.976.

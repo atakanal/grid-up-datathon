@@ -1,0 +1,29 @@
+{
+  "sema_surumu": 1,
+  "yarisma": "grid-up-datathon",
+  "metrik": "RMSLE",
+  "skor_kapsami": "genel liderlik tablosu",
+  "beklenen_satir_sayisi": 714688,
+  "submissionlar": [
+    {
+      "repo_sirasi": 1,
+      "surum": "V108",
+      "dosya": "submissions/gridup_v108_uniform_endpoint_candidate.csv",
+      "genel_skor": 0.99430,
+      "satir_sayisi": 714688,
+      "benzersiz_id": 714688,
+      "ornek_submission_sirasi_birebir": true,
+      "sha256": "E4EF38B7266604AA1249788C9883C8B184EE6499D0FCC765AB8D5BB6BD7E1151"
+    },
+    {
+      "repo_sirasi": 2,
+      "surum": "V96b",
+      "dosya": "submissions/gridup_v96b_fresh_warm_challenger.csv",
+      "genel_skor": 0.99676,
+      "satir_sayisi": 714688,
+      "benzersiz_id": 714688,
+      "ornek_submission_sirasi_birebir": true,
+      "sha256": "FBCA47E968F6CEE26FF041D6EDFA4664A0C05BE201CEB1647D0BAB3083BCCFFC"
+    }
+  ]
+}

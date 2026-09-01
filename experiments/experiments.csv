@@ -1,2 +1,0 @@
-timestamp_utc,experiment,model,task,metric,cv,n_splits,seed,fold_scores,cv_score,submission,public_lb,notes
-2026-07-12T10:45:26+00:00,rehearsal_randomforest_timeseries,randomforest,regression,rmse,timestamp_block_timeseries,3,42,"[7.925846684221489, 5.910345118042148, 4.9603829502712316]",6.386355875079595,submissions\rehearsal_baseline.csv,,Synthetic end-to-end competition rehearsal; no target-derived features.
