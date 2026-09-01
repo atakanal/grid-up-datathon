@@ -3,14 +3,14 @@
 [![Submissionları doğrula](https://github.com/atakanal/grid-up-datathon/actions/workflows/submissionlari-dogrula.yml/badge.svg)](https://github.com/atakanal/grid-up-datathon/actions/workflows/submissionlari-dogrula.yml)
 
 Bu repo, [Grid Up Datathon](https://www.kaggle.com/competitions/grid-up-datathon)
-için geliştirdiğimiz günlük trafo tüketimi tahmin çalışmasının yarışmaya özel
+için geliştirdiğim günlük trafo tüketimi tahmin çalışmasının yarışmaya özel
 ve sadeleştirilmiş arşividir.
 
 Amaç, günlük tüketimi RMSLE metriğine göre tahmin etmektir. Nihai yaklaşım;
 geçmişi bulunan sıcak trafoları, geçmişi bulunmayan soğuk trafolardan ayrı ele
 alır ve tahminleri `log1p` uzayında birleştirir.
 
-## En iyi sonuçlarımız
+## En iyi sonuçlar
 
 | Genel skor | Submission | Satır | SHA-256 |
 |---:|---|---:|---|
@@ -69,10 +69,3 @@ python .\scripts\submissionlari_dogrula.py `
   --yarisma-zip C:\veri\grid-up-datathon.zip
 ```
 
-## Veri ve uygunluk notu
-
-Yarışma verileri ile üçüncü taraf ham veri dosyaları bu repoda dağıtılmaz.
-V108'in model soy ağacında 31 Mart 2026 sonrasına ait gerçekleşmiş dış
-gözlemlerden etkilenen bileşenler vardır. Bu nedenle V108, nihai notebook veya
-jüri değerlendirmesinde kullanılmadan önce organizatörün dış veri yorumuyla
-uygunluk açısından ayrıca incelenmelidir.
