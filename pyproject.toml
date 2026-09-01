@@ -3,10 +3,10 @@ requires = ["setuptools>=75"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "grid-up-starter"
+name = "grid-up-datathon"
 version = "0.1.0"
-description = "Grid Up Datathon starter project"
-requires-python = ">=3.11"
+description = "Grid Up Datathon forecasting experiments and submission archive"
+requires-python = ">=3.10"
 
 [tool.setuptools]
 packages = ["src"]

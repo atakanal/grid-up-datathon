@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "competition": "grid-up-datathon",
+  "metric": "RMSLE",
+  "score_scope": "public leaderboard",
+  "expected_rows": 714688,
+  "submissions": [
+    {
+      "rank_in_repository": 1,
+      "version": "V108",
+      "file": "submissions/gridup_v108_uniform_endpoint_candidate.csv",
+      "public_score": 0.99430,
+      "rows": 714688,
+      "unique_ids": 714688,
+      "sample_order_exact": true,
+      "sha256": "E4EF38B7266604AA1249788C9883C8B184EE6499D0FCC765AB8D5BB6BD7E1151"
+    },
+    {
+      "rank_in_repository": 2,
+      "version": "V96b",
+      "file": "submissions/gridup_v96b_fresh_warm_challenger.csv",
+      "public_score": 0.99676,
+      "rows": 714688,
+      "unique_ids": 714688,
+      "sample_order_exact": true,
+      "sha256": "FBCA47E968F6CEE26FF041D6EDFA4664A0C05BE201CEB1647D0BAB3083BCCFFC"
+    }
+  ]
+}

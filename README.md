@@ -1,59 +1,90 @@
-# Grid Up Datathon Starter
+# Grid Up Datathon
 
-Bu depo, yarışma verisi yayınlanmadan önce kurulabilecek tekrar üretilebilir bir makine öğrenmesi altyapısıdır.
+[![Verify submissions](https://github.com/atakanal/grid-up-datathon/actions/workflows/verify-submissions.yml/badge.svg)](https://github.com/atakanal/grid-up-datathon/actions/workflows/verify-submissions.yml)
 
-## Hızlı başlangıç
+End-to-end experimentation, validation, and submission archive for the
+[Grid Up Datathon](https://www.kaggle.com/competitions/grid-up-datathon).
+
+The project forecasts daily transformer electricity consumption under RMSLE.
+Its final public-leaderboard solution treats transformers with historical
+observations (warm series) separately from unseen transformers (cold series),
+models predictions in `log1p` space, and applies stress-tested ensemble
+selection.
+
+## Results
+
+| Public score | Submission | Rows | SHA-256 |
+|---:|---|---:|---|
+| **0.99430** | [`gridup_v108_uniform_endpoint_candidate.csv`](submissions/gridup_v108_uniform_endpoint_candidate.csv) | 714,688 | `E4EF38...1151` |
+| **0.99676** | [`gridup_v96b_fresh_warm_challenger.csv`](submissions/gridup_v96b_fresh_warm_challenger.csv) | 714,688 | `FBCA47...CFFC` |
+
+Both files preserve the official sample-submission order and pass checks for
+unique IDs, finite values, and non-negative predictions. Full hashes and
+machine-readable metadata are stored in
+[`results/leaderboard_results.json`](results/leaderboard_results.json).
+
+## Solution outline
+
+- **Warm/cold routing:** 5,012 test transformers have train history; 2,024 do
+  not. Models and validation protocols are separated accordingly.
+- **Warm forecasting:** recent level, weekday seasonality, year-over-year
+  profiles, trend, staleness, and horizon-aware combinations.
+- **Cold forecasting:** power/location priors, natural-entry cohorts,
+  lifecycle features, and hierarchical shrinkage.
+- **External signals:** calendar, weather, water, electricity-system, and
+  activity indicators were evaluated with source-specific controls.
+- **Final selection:** predictions are combined in `log1p` space and tested
+  across deterministic row, transformer, day, month, horizon, and model-family
+  stress slices.
+
+See [`docs/APPROACH.md`](docs/APPROACH.md) for the modeling narrative and
+[`docs/REPRODUCIBILITY.md`](docs/REPRODUCIBILITY.md) for verification steps.
+
+## Repository layout
+
+```text
+.
+├── data/           # local-only raw and processed data placeholders
+├── docs/           # methodology and reproducibility notes
+├── experiments/    # baseline experiment reports and diagnostics
+├── notebooks/      # EDA and modeling notebooks
+├── results/        # final leaderboard manifest
+├── scripts/        # training, analysis, and verification utilities
+├── src/            # reusable feature/model/validation modules
+├── submissions/    # two best scored submissions
+└── tests/           # pipeline and submission safety tests
+```
+
+## Quick start
 
 ```bash
 python -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 python scripts/check_environment.py
-python scripts/init_experiment_log.py
+pytest -q
 ```
 
-Veriler geldiğinde dosyaları `data/raw/` altına koyun ve aşağıdaki komutla ilk eğitimi başlatın:
+Verify the archived submissions without competition data:
 
 ```bash
-python -m src.train \
-  --train-path data/raw/train.csv \
-  --test-path data/raw/test.csv \
-  --target TARGET_COLUMN \
-  --id-column ID_COLUMN \
-  --task regression \
-  --model randomforest \
-  --cv kfold
+python scripts/verify_final_submissions.py
 ```
 
-Zaman veya grup bağımlılığı varsa `--cv timeseries` ya da `--cv group` kullanın. Grup validasyonunda ayrıca `--group-column` verilmelidir.
+To additionally verify their ID order against the official sample submission:
 
-## Ana prensipler
+```bash
+python scripts/verify_final_submissions.py \
+  --competition-zip /path/to/grid-up-datathon.zip
+```
 
-- Public leaderboard yerine yerel CV karar mekanizmasıdır.
-- Her deney `experiments/experiments.csv` dosyasına kaydedilir.
-- Özellik üretimi fold dışında hedef bilgisi kullanmamalıdır.
-- Nihai notebook temiz ortamda baştan sona çalışmalıdır.
+## Data and reproducibility note
 
-## Klasörler
+Competition data and third-party raw datasets are not redistributed. Some
+late-stage public-leaderboard experiments, including the lineage of V108,
+incorporated external observations dated after 31 March 2026. Their eligibility
+must be reviewed against the competition's final external-data interpretation
+before using the files in a judged notebook or final solution.
 
-- `data/raw/`: Ham yarışma dosyaları; Git'e eklenmez.
-- `data/processed/`: Ara veri setleri; Git'e eklenmez.
-- `src/`: Eğitim, validasyon, özellik ve submission kodu.
-- `notebooks/`: EDA ve final notebook şablonları.
-- `experiments/`: Deney günlüğü.
-- `models/`: Eğitilmiş modeller; Git'e eklenmez.
-- `submissions/`: Kaggle gönderimleri.
-- `tests/`: Basit güvenlik kontrolleri.
-
-## Veri gelince ilk kontrol
-
-1. Train/test şekilleri ve sütun tipleri
-2. Hedef dağılımı ve resmî metrik
-3. ID tekrarları, grup yapısı ve zaman sıralaması
-4. Train-test kategorik farkları
-5. Eksik değer desenleri
-6. Leakage adayları
-7. Sample submission şeması
-
-
-`randomforest`, yalnızca scikit-learn ile çalışan hızlı sağlık kontrolü modelidir. Yarışmada ana adaylar LightGBM, CatBoost ve XGBoost olacaktır.
+The repository is an experiment and submission archive, not production energy
+forecasting software.
