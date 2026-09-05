@@ -1,6 +1,5 @@
 # Grid Up Datathon
 
-[![Submissionları doğrula](https://github.com/atakanal/grid-up-datathon/actions/workflows/submissionlari-dogrula.yml/badge.svg)](https://github.com/atakanal/grid-up-datathon/actions/workflows/submissionlari-dogrula.yml)
 
 Bu repo, [Grid Up Datathon](https://www.kaggle.com/competitions/grid-up-datathon)
 için geliştirdiğim günlük trafo tüketimi tahmin çalışmasının yarışmaya özel
